@@ -1,12 +1,12 @@
 use std::path::PathBuf;
 
-use rand::{distributions::Standard, Rng};
+use rand::Rng;
 
 use serde_derive::{Deserialize, Serialize};
 
-use crate::ml::{relu, sigmoid, tanh};
+use crate::ml::tanh;
 
-use super::{create_filename, drelu, dsigmoid, dtanh};
+use super::{create_filename, dtanh};
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct Neruon {
@@ -106,6 +106,14 @@ impl NeuralNetwork {
             println!("Epoch: {}, Error rate: {}", epoch, self.error_total);
             self.error_total = 0.0;
         }
+    }
+    pub fn predict(&mut self, input: &Vec<f64>) -> Vec<f64> {
+        self.feed_forward(input);
+        self.output_layer
+            .clone()
+            .into_iter()
+            .map(|item| item.output)
+            .collect()
     }
 
     pub fn feed_forward(&mut self, input: &Vec<f64>) {
