@@ -12,31 +12,22 @@ Project where i implement many Machine Learning Algorithms.
 Exemplo:
 ```
 Initialize:
-let mut nn = NeuralNetwork::new(vec![2, 6, 4, 6, 1], 0, 0.6, 1.0)  
+let mut nn = NeuralNetwork::new(topology: Vec<usize>, bias: usize, lerning_rate: f64, momentum: f64)  
 ```
-- Parameters
-    Topology        Vec<usize>
-    Bias            usize
-    Learning Rate   f64
-    Momentum        f64
 
 ```
 Train:
-nn.train(epoch, inputs, outputs);
+nn.train(epochs: usize, inputs: Vec<Vec<f64>>, outputs: Vec<Vec<f64>>);
 ```
-- Parameters
-    Epochs          usize
-    Inputs          Vec<f64>
-    Outputs         Vec<f64>
 
 ```
 Save:
-nn.save_neural_network(Option<&str>);
+nn.save_neural_network(name: Option<&str>);
 ```
 
 ```
 Load:
-let mut nn = NeuralNetwork::load_neural_network(&str);
+let mut nn = NeuralNetwork::load_neural_network(filename: &str);
 ```
 
 
